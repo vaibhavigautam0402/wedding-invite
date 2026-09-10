@@ -47,10 +47,13 @@ a {
 
   color: white;
 
-  background:
-    url("images/hero.webp")
-    center / cover no-repeat;
+  background-image: url("images/entrance.jfif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
 }
+
 
 .hero-overlay {
   position: absolute;
