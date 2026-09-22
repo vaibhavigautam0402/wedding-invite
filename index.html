@@ -1,294 +1,732 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#5c1010">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Vaibhavi & Gautam | Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --maroon: #5c1010;
+      --maroon-deep: #3d0a0a;
+      --maroon-card: #4a0e0e;
+      --gold: #d4a017;
+      --gold-light: #f0d060;
+      --cream: #fdf5e6;
+      --cream-muted: #d9c9a8;
+      --saffron: #ff9933;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Montserrat', 'Helvetica Neue', sans-serif;
+    }
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
 
-  <meta
-    name="description"
-    content="Wedding invitation for Vaibhavi & Gautam"
-  />
+    body {
+      font-family: var(--font-body);
+      background: var(--maroon);
+      color: var(--cream);
+      line-height: 1.7;
+      font-weight: 300;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  <title>Vaibhavi & Gautam — Wedding Invitation</title>
+    /* ===== TEMPLE BORDER FRAME ===== */
+    .frame {
+      position: fixed;
+      inset: 10px;
+      border: 1px solid rgba(212,160,23,0.25);
+      pointer-events: none;
+      z-index: 50;
+      border-radius: 2px;
+    }
+    .frame::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(212,160,23,0.12);
+      border-radius: 2px;
+    }
+    .frame .corner {
+      position: absolute;
+      width: 26px; height: 26px;
+      border-color: var(--gold);
+      border-style: solid;
+      border-width: 0;
+      opacity: 0.7;
+    }
+    .frame .corner.tl { top: -1px; left: -1px; border-top-width: 2px; border-left-width: 2px; }
+    .frame .corner.tr { top: -1px; right: -1px; border-top-width: 2px; border-right-width: 2px; }
+    .frame .corner.bl { bottom: -1px; left: -1px; border-bottom-width: 2px; border-left-width: 2px; }
+    .frame .corner.br { bottom: -1px; right: -1px; border-bottom-width: 2px; border-right-width: 2px; }
 
-  <link rel="stylesheet" href="style.css" />
+    /* ===== KOLAM PATTERN BG ===== */
+    .kolam-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle at center, rgba(212,160,23,0.05) 1px, transparent 1.5px);
+      background-size: 42px 42px;
+      opacity: 0.6;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 5rem 1.75rem;
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 1.75rem 5rem;
+    }
+
+    .hero-ganesh {
+      font-size: 2.4rem;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .hero-blessing {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--gold-light);
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.6rem;
+      margin: 1.25rem 0 1.75rem;
+      width: 100%;
+    }
+    .hero-divider .line {
+      flex: 1; max-width: 70px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .hero-divider .dot { color: var(--gold); font-size: 0.55rem; }
+
+    .hero-names {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 10vw, 5rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .hero-names .amp {
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.55em;
+      color: var(--gold);
+      display: inline-block;
+      margin: 0 0.25em;
+      vertical-align: middle;
+    }
+
+    .hero-sub {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--cream-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-date-card {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid rgba(212,160,23,0.35);
+      border-radius: 2px;
+      background: rgba(61,10,10,0.55);
+      margin-bottom: 1.75rem;
+    }
+    .hero-date-card .d-main {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+    .hero-date-card .d-sub {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      margin-top: 0.3rem;
+    }
+
+    .hero-muhurtam {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 2rem;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.25rem;
+      left: 0; right: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      font-size: 0.5rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+    .scroll-line {
+      width: 1px; height: 32px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-head { text-align: center; margin-bottom: 2.5rem; }
+    .section-om {
+      font-size: 1.4rem;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+    .section-label {
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 5vw, 2.6rem);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .section-title em {
+      font-weight: 300;
+      color: var(--gold-light);
+    }
+
+    /* ===== FAMILIES ===== */
+    #families { text-align: center; }
+    .families-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .family-card {
+      padding: 2.25rem 1.75rem;
+      background: rgba(61,10,10,0.5);
+      border: 1px solid rgba(212,160,23,0.18);
+      border-radius: 3px;
+      position: relative;
+      transition: border-color 0.4s ease, background 0.4s ease;
+    }
+    .family-card::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px; right: 8px; bottom: 8px;
+      border: 1px solid rgba(212,160,23,0.08);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .family-card:hover {
+      border-color: rgba(212,160,23,0.45);
+      background: rgba(74,14,14,0.75);
+    }
+    .family-card .f-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.85;
+    }
+    .family-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+    .family-card .parents {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--cream);
+      line-height: 1.8;
+    }
+    .family-union {
+      margin-top: 1.75rem;
+      padding: 1.5rem 2rem;
+      border-top: 1px solid rgba(212,160,23,0.15);
+      border-bottom: 1px solid rgba(212,160,23,0.15);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--cream-muted);
+      line-height: 2;
+    }
+
+    /* ===== EVENTS ===== */
+    #events { text-align: center; }
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .event-card {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      padding: 1.75rem;
+      background: rgba(61,10,10,0.5);
+      border: 1px solid rgba(212,160,23,0.15);
+      border-radius: 3px;
+      transition: border-color 0.4s ease, background 0.4s ease;
+    }
+    .event-card:hover {
+      border-color: rgba(212,160,23,0.4);
+      background: rgba(74,14,14,0.75);
+    }
+    .event-header {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .event-icon {
+      flex-shrink: 0;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,160,23,0.3);
+      background: rgba(212,160,23,0.07);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .event-body .e-date {
+      font-size: 0.5rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .event-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+    .event-body p {
+      font-size: 0.75rem;
+      color: var(--cream-muted);
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+    }
+    .event-body .e-time {
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      color: var(--gold-light);
+      border: 1px solid rgba(212,160,23,0.25);
+      padding: 0.3rem 0.85rem;
+      border-radius: 2px;
+    }
+    
+    /* Map Embed Styling */
+    .map-container {
+      width: 100%;
+      height: 220px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(212,160,23,0.2);
+      margin-top: 0.5rem;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: sepia(15%) hue-rotate(350deg) saturate(1.1);
+    }
+
+    /* ===== RSVP ===== */
+    #rsvp { text-align: center; }
+    .rsvp-card {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      background: rgba(61,10,10,0.5);
+      border: 1px solid rgba(212,160,23,0.18);
+      border-radius: 3px;
+      text-align: center;
+      position: relative;
+    }
+    .rsvp-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(212,160,23,0.08);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .rsvp-note {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--cream-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.9;
+    }
+    
+    /* Embedded Form Styling */
+    .form-embed-container {
+      width: 100%;
+      border: 1px solid rgba(212,160,23,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      background: rgba(253, 245, 230, 0.03);
+      position: relative;
+      z-index: 2;
+    }
+    .form-embed-container iframe {
+      display: block;
+      width: 100%;
+      min-height: 650px;
+    }
+
+    .rsvp-deadline {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      opacity: 0.75;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 3.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    footer .f-ornament {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.6em;
+      margin-bottom: 1rem;
+      opacity: 0.55;
+    }
+    footer p {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--cream-muted);
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    html.js .anim {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+      will-change: opacity, transform;
+    }
+    html.js .anim-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+      will-change: opacity, transform;
+    }
+    html.js .anim-right {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+      will-change: opacity, transform;
+    }
+    html.js .anim-scale {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+      will-change: opacity, transform;
+    }
+    html.js .anim.visible,
+    html.js .anim-left.visible,
+    html.js .anim-right.visible,
+    html.js .anim-scale.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ===== SAFE AREAS ===== */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      #hero { padding-top: calc(7rem + env(safe-area-inset-top)); }
+      #hero { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+      footer { padding-bottom: calc(3.5rem + env(safe-area-inset-bottom)); }
+      .frame { inset: calc(8px + env(safe-area-inset-top)) calc(8px + env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) calc(8px + env(safe-area-inset-left)); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      section { padding: 3.5rem 1.4rem; }
+      #hero { padding: 5.5rem 1.4rem 4.5rem; }
+      .families-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .event-header { flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
+      .event-body { text-align: center; }
+      .rsvp-card { padding: 2rem 1.25rem; }
+      .hero-names { font-size: clamp(2.2rem, 12vw, 3.4rem); }
+      .hero-date-card { padding: 0.75rem 1.6rem; }
+      .frame { inset: 6px; }
+      .form-embed-container iframe { min-height: 750px; } /* Extra height for mobile form rendering */
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- =========================
-       HERO
-  ========================== -->
-  <header class="hero">
-    <div class="hero-overlay"></div>
+  <div class="frame">
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
+  </div>
+  <div class="kolam-bg"></div>
 
-    <div class="hero-content">
-      <p class="eyebrow">WE ARE GETTING MARRIED</p>
-
-      <h1>
-        Vaibhavi
-        <span>&</span>
-        Gautam
-      </h1>
-
-      <p class="hero-date">
-        Thursday, 05 November 2026
-      </p>
-
-      <a href="#details" class="button">
-        Explore Invitation
-      </a>
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-ganesh anim-scale">🕉️</div>
+    <p class="hero-blessing anim d1">Shubh Vivah</p>
+    <div class="hero-divider anim d1">
+      <span class="line"></span>
+      <span class="dot">✦</span>
+      <span class="line"></span>
     </div>
-  </header>
+    <h1 class="hero-names anim d2">
+      Vaibhavi <span class="amp">&amp;</span> Gautam
+    </h1>
+    <p class="hero-sub anim d2">together with our families</p>
+    <div class="hero-date-card anim d3">
+      <div class="d-main">November 05, 2026</div>
+      <div class="d-sub">Thursday · Thrissur, Kerala</div>
+    </div>
+    <p class="hero-muhurtam anim d3">Muhurtam · 10:00 AM onwards</p>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
+  <!-- ===== FAMILIES ===== -->
+  <section id="families">
+    <div class="section-head">
+      <div class="section-om anim-scale">ॐ</div>
+      <p class="section-label anim d1">With Blessings From</p>
+      <h2 class="section-title anim d2">Two families, <em>one celebration</em></h2>
+    </div>
 
-  <main>
-
-    <!-- =========================
-         INTRO
-    ========================== -->
-    <section class="section intro">
-      <p class="eyebrow">TOGETHER WITH OUR FAMILIES</p>
-
-      <h2>
-        We invite you to celebrate
-        our special day with us.
-      </h2>
-
-      <p class="body-text">
-        Your presence means the world to us,
-        and we can't wait to celebrate this
-        beautiful beginning surrounded by
-        the people we love.
-      </p>
-    </section>
-
-
-    <!-- =========================
-         DATE / COUNTDOWN
-    ========================== -->
-    <section class="section date-section" id="details">
-
-      <p class="eyebrow">SAVE THE DATE</p>
-
-      <h2>05 November 2026</h2>
-
-      <p>Thursday · 10:00 AM</p>
-
-      <div class="countdown" id="countdown">
-        <div>
-          <strong id="days">00</strong>
-          <span>Days</span>
+    <div class="families-grid">
+      <div class="family-card anim-left d1">
+        <div class="f-icon">🌺</div>
+        <h3>Vaibhavi's Family</h3>
+        <div class="parents">
+          With love of<br>Geethapriya &amp; Harish
         </div>
-
-        <div>
-          <strong id="hours">00</strong>
-          <span>Hours</span>
+      </div>
+      <div class="family-card anim-right d2">
+        <div class="f-icon">🪔</div>
+        <h3>Gautam's Family</h3>
+        <div class="parents">
+          With love of<br>Suni, Sivakumar, Govindaraj &amp; Gayathri
         </div>
+      </div>
+    </div>
 
-        <div>
-          <strong id="minutes">00</strong>
-          <span>Minutes</span>
+    <div class="family-union anim d3">
+      With the blessings of our elders and the grace of the Almighty,<br>
+      we joyfully invite you to witness the sacred union of Vaibhavi and Gautam.
+    </div>
+  </section>
+
+  <!-- ===== EVENTS ===== -->
+  <section id="events">
+    <div class="section-head">
+      <div class="section-om anim-scale">✦</div>
+      <p class="section-label anim d1">The Celebrations</p>
+      <h2 class="section-title anim d2">Wedding <em>events</em></h2>
+    </div>
+
+    <div class="events-list">
+      <!-- Wedding -->
+      <div class="event-card anim-left d1">
+        <div class="event-header">
+          <div class="event-icon">🔥</div>
+          <div class="event-body">
+            <div class="e-date">November 05, 2026 · Thursday</div>
+            <h3>Vivaha — The Sacred Ceremony</h3>
+            <div class="e-time">10:00 AM onwards</div>
+            <p>
+              <strong>Blue Serene Resorts</strong><br>
+              Karuvanthala Hotels & Resorts,<br>
+              Theeradesam Road, Thoyakkavu P.O.,<br>
+              Thrissur, Kerala 680513, India
+            </p>
+          </div>
         </div>
-
-        <div>
-          <strong id="seconds">00</strong>
-          <span>Seconds</span>
+        <div class="map-container">
+          <iframe src="https://maps.google.com/maps?q=Blue+Serene+Resorts,+Karuvanthala+Hotels+and+Resorts,+Theeradesam+Road,+Thoyakkavu+P.O.,+Thrissur,+Kerala+680513,+India&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
 
-    </section>
+      <!-- Reception -->
+      <div class="event-card anim-right d2">
+        <div class="event-header">
+          <div class="event-icon">🎉</div>
+          <div class="event-body">
+            <div class="e-date">November 05, 2026 · Thursday</div>
+            <h3>Grand Reception</h3>
+            <div class="e-time">06:00 PM onwards</div>
+            <p>
+              <strong>Deja Blu</strong><br>
+              Thambankadavu Beach Road,<br>
+              Vadanappally, Kerala 680569, India
+            </p>
+          </div>
+        </div>
+        <div class="map-container">
+          <iframe src="https://maps.google.com/maps?q=Deja+Blu,+Thambankadavu+Beach+Road,+Vadanappally,+Kerala+680569,+India&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== RSVP ===== -->
+  <section id="rsvp">
+    <div class="section-head">
+      <div class="section-om anim-scale">✦</div>
+      <p class="section-label anim d1">RSVP</p>
+      <h2 class="section-title anim d2">Will you <em>grace us</em>?</h2>
+    </div>
 
-    <!-- =========================
-         EVENTS
-    ========================== -->
-    <section class="section events">
+    <div class="rsvp-card anim-scale d2">
+      <p class="rsvp-note">Your presence is our greatest blessing.<br>Kindly respond by October 20, 2026.</p>
 
-      <p class="eyebrow">THE CELEBRATION</p>
-
-      <h2>Wedding Events</h2>
-
-      <div class="event-list">
-
-        <article class="event-card">
-          <span class="event-time">10:00 AM</span>
-
-          <h3>Wedding Ceremony</h3>
-
-          <p>
-            <strong>Blue Serene Resorts</strong> <br />
-            Karuvanthala Hotels & Resorts, Theeradesam Road, Thoyakkavu P.O, Thrissur, Kerala 680513, India
-          </p>
-        </article>
-
-
-        <article class="event-card">
-          <span class="event-time">07:00 PM</span>
-
-          <h3>Reception</h3>
-
-          <p><strong>
-            Deja blu</strong><br />
-            Thambankadavu Beach Road, Vadanappally, Kerala 680569, India
-          </p>
-        </article>
-
+      <div class="form-embed-container">
+        <!-- CLEAN URL: Removed the "?entry..." pre-filled parameters -->
+        <iframe 
+          src="https://docs.google.com/forms/d/e/1FAIpQLSenRqkUzujbjY7BWj_h_kpitc_2JQSKtpW9-RwegP_SCfonZg/viewform?embedded=true" 
+          width="100%" 
+          height="650" 
+          frameborder="0" 
+          marginheight="0" 
+          marginwidth="0"
+          title="RSVP Form">
+          Loading form…
+        </iframe>
       </div>
 
-    </section>
+      <p class="rsvp-deadline anim d3">We look forward to celebrating with you</p>
+    </div>
+  </section>
 
-
-    <!-- =========================
-         VENUE
-    ========================== -->
-    <section class="section venue">
-
-      <p class="eyebrow">WHERE</p>
-
-      <h2><strong>Blue Serene Resorts</strong></h2>
-
-      <p class="body-text">
-        Karuvanthala Hotels & Resorts, Theeradesam Road, Thoyakkavu P.O, Thrissur, Kerala
-      </p>
-
-      <a
-        href="https://maps.app.goo.gl/5p68FBAX78G3LXKi6"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="button"
-      >
-        Open in Maps
-      </a>
-      
-      <div class="venue-separator">✦</div>
-
-      <h2><strong>Deja blu</strong></h2>
-
-      <p class="body-text">
-        Thambankadavu Beach Road, Vadanappally, Kerala 680569, India
-      </p>
-
-      <a
-        href="https://maps.app.goo.gl/BphT4gqLtZKsXNtj7"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="button"
-      >
-        Open in Maps
-      </a>
-
-    </section>
-
-
-    <!-- =========================
-         STORY
-    ========================== -->
-    <section class="section story">
-
-      <p class="eyebrow">OUR STORY</p>
-
-      <h2>How it all began</h2>
-
-      <p class="body-text">
-        Tell your story here. A short paragraph
-        about how you met, your journey together,
-        or anything meaningful you'd like your
-        guests to know.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         GALLERY
-    ========================== -->
-    <section class="section gallery-section">
-
-      <p class="eyebrow">A FEW MEMORIES</p>
-
-      <h2>Our Moments</h2>
-
-      <div class="gallery">
-
-        <img
-          src="images/photo-1.webp"
-          alt="[Couple] photo"
-          loading="lazy"
-        />
-
-        <img
-          src="images/photo-2.webp"
-          alt="[Couple] photo"
-          loading="lazy"
-        />
-
-        <img
-          src="images/photo-3.webp"
-          alt="[Couple] photo"
-          loading="lazy"
-        />
-
-        <img
-          src="images/photo-4.webp"
-          alt="[Couple] photo"
-          loading="lazy"
-        />
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         RSVP
-    ========================== -->
-    <section class="section rsvp">
-
-      <p class="eyebrow">WE'D LOVE TO SEE YOU</p>
-
-      <h2>Will you join us?</h2>
-
-      <p class="body-text">
-        Please let us know if you'll be
-        celebrating with us.
-      </p>
-
-      <a
-        href="#"
-        class="button"
-      >
-        RSVP
-      </a>
-
-    </section>
-
-  </main>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-  <footer class="footer">
-
-    <h2>Vaibhavi & Gautam</h2>
-
-    <p>
-      05 November 2026
-    </p>
-
-    <p class="footer-small">
-      With love, Suni K, Sivakumar, Govindaraj, Geetapriya, Harish, Gayathri
-    </p>
-
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="f-ornament anim">✦ ✦ ✦</div>
+    <p class="anim d1">Vaibhavi &amp; Gautam · November 05, 2026 · Thrissur, Kerala</p>
   </footer>
 
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
 
-  <script src="script.js"></script>
+      function onReady(fn) {
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn);
+      }
 
+      onReady(function () {
+        var items = Array.prototype.slice.call(
+          document.querySelectorAll('.anim, .anim-left, .anim-right, .anim-scale')
+        );
+
+        function show(el) { el.classList.add('visible'); }
+
+        function revealInView() {
+          var vh = window.innerHeight || document.documentElement.clientHeight;
+          items.forEach(function (el) {
+            var r = el.getBoundingClientRect();
+            if (r.top < vh * 0.92 && r.bottom > 0) show(el);
+          });
+        }
+
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                show(entry.target);
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+          items.forEach(function (el) { observer.observe(el); });
+        }
+
+        var ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(function () {
+            var vh = window.innerHeight || document.documentElement.clientHeight;
+            items.forEach(function (el) {
+              if (el.classList.contains('visible')) return;
+              var r = el.getBoundingClientRect();
+              if (r.top < vh * 0.92) show(el);
+            });
+            ticking = false;
+          });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        window.addEventListener('orientationchange', onScroll, { passive: true });
+
+        revealInView();
+        setTimeout(revealInView, 300);
+        setTimeout(revealInView, 900);
+        window.addEventListener('load', revealInView);
+      });
+    })();
+  </script>
 </body>
 </html>

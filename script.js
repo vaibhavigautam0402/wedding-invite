@@ -6,6 +6,10 @@ const weddingDate = new Date(
   "November 05, 2026 10:00:00"
 ).getTime();
 
+const nextDate = new Date(
+  "November 06, 2026 00:00:00"
+).getTime();
+
 
 // =========================
 // COUNTDOWN
@@ -17,9 +21,18 @@ function updateCountdown() {
 
   const distance = weddingDate - now;
 
+  const weddingOver = nextDate - now
+
+  if (weddingOver <= 0) {
+    document.getElementById("countdown").innerHTML =
+      "<span><strong><p>We are officially happily ever after! ❤️</p></strong></span>";
+
+    return;
+  }
+
   if (distance <= 0) {
     document.getElementById("countdown").innerHTML =
-      "<p>Today is the day! ❤️</p>";
+      "<span><strong><p>Today is the day! ❤️</p></strong></span>";
 
     return;
   }
