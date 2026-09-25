@@ -90,11 +90,27 @@
     }
 
     .hero-top{
-      transform: translateY(-60px);
+      transform: translateY(-125px);
     }
 
     .hero-bottom{
-      transform: translateY(60px);
+      transform: translateY(90px);
+    }
+
+    .hero-invite {
+      position: relative;
+      z-index: 10;
+
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--cream);
+
+      text-align: center;
+
+      margin: 0 auto;
+      padding: 4rem 2rem 1rem;
     }
 
 
@@ -103,12 +119,11 @@
 
     .hero-names {
       font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 300; font-style: italic; line-height: 1.1;
-      color: var(--cream); margin-bottom: 1.5rem; letter-spacing: 0.02em;
+      font-weight: 500; font-style: italic; line-height: 1.1;
+      color: var(--burgundy-dark); margin-bottom: 1.5rem; letter-spacing: 0.02em;
     }
 
-    .hero-names .ampersand { font-style: normal; font-size: 0.7em; color: var(--burgundy-dark); display: inline-block; margin: 0 0.3em; vertical-align: middle; }
-    .hero-invite { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; color: var(--burgundy-dark); margin-bottom: 2.5rem; }
+    .hero-names .ampersand { font-style: normal; font-size: 0.7em; color: var(--cream); display: inline-block; margin: 0 0.3em; vertical-align: middle; }
     .hero-line { width: 60px; height: 1px; background: var(--burgundy-dark); margin: 0 auto 2rem; }
 
     /* Countdown Timer Styles */
@@ -600,13 +615,14 @@
     <a href="#rsvp">RSVP</a>
   </nav>
 
+  <div class="hero-invite">Together with their families, invite you to celebrate their union</div>
+
   <section id="hero">
     <div class="hero-top">
     <!-- <div class="hero-ornament"> ✦ ✦ ✦</div> -->
     <h1 class="hero-names">Vaibhavi <span class="ampersand">&</span> Gautam</h1>
     </div>
     <div class="hero-bottom">
-    <p class="hero-invite">Together with their families, invite you to celebrate their union</p>
     <div class="hero-date">05 November 2026</div>
     <div class="hero-line"></div>
     
