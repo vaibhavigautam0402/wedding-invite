@@ -17,6 +17,8 @@
       --gold-dark: #B5952F;
       --cream: #FDF8F0;
       --cream-muted: #D4C4A8;
+      --black: #000;
+      --test:#ffb9b8;
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body: 'Montserrat', 'Helvetica Neue', sans-serif;
     }
@@ -56,11 +58,33 @@
     #hero {
       min-height: 100vh; display: flex; flex-direction: column;
       align-items: center; justify-content: center; text-align: center;
-      padding: 8rem 2rem 6rem; position: relative; overflow: hidden;
+      padding: 16rem 2rem 6rem; position: relative; overflow: hidden;
+      isolation: isolate;
+    }
+
+    #hero::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("images/img_us_v1.jpeg");
+      background-size: 95% auto;
+      background-repeat: no-repeat;
+      background-position: center;
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-composite: intersect;
+
+      mask-image:
+        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-composite: intersect;
+      z-index: -1;
+      opacity: 0.85;
     }
 
     .hero-ornament { font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem; opacity: 0.8; letter-spacing: 0.5em; }
-    .hero-date { font-family: var(--font-body); font-size: 0.75rem; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 2rem; }
+    .hero-date { font-family: var(--font-body); font-size: 1.25rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--burgundy-dark); margin-bottom: 0.5rem; }
 
     .hero-names {
       font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5.5rem);
@@ -68,9 +92,9 @@
       color: var(--cream); margin-bottom: 1.5rem; letter-spacing: 0.02em;
     }
 
-    .hero-names .ampersand { font-style: normal; font-size: 0.7em; color: var(--gold); display: inline-block; margin: 0 0.3em; vertical-align: middle; }
-    .hero-invite { font-family: var(--font-body); font-size: 0.75rem; font-weight: 300; letter-spacing: 0.2em; color: var(--cream-muted); margin-bottom: 2.5rem; }
-    .hero-line { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 2rem; }
+    .hero-names .ampersand { font-style: normal; font-size: 0.7em; color: var(--burgundy-dark); display: inline-block; margin: 0 0.3em; vertical-align: middle; }
+    .hero-invite { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; color: var(--burgundy-dark); margin-bottom: 2.5rem; }
+    .hero-line { width: 60px; height: 1px; background: var(--burgundy-dark); margin: 0 auto 2rem; }
 
     /* Countdown Timer Styles */
     .countdown-container {
@@ -90,7 +114,7 @@
       font-family: var(--font-display);
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 400;
-      color: var(--gold);
+      color: var(--burgundy-dark);
       line-height: 1;
     }
     .countdown-label {
@@ -99,13 +123,13 @@
       font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--cream-muted);
+      color: var(--burgundy-dark);
       margin-top: 0.5rem;
     }
     .countdown-separator {
       font-family: var(--font-display);
       font-size: 2rem;
-      color: var(--gold);
+      color: var(--burgundy);
       opacity: 0.5;
       margin-top: -1rem;
     }
@@ -562,10 +586,10 @@
   </nav>
 
   <section id="hero">
-    <div class="hero-ornament"> ✦ ✦ ✦</div>
-    <div class="hero-date">05 November 2026</div>
+    <!-- <div class="hero-ornament"> ✦ ✦ ✦</div> -->
     <h1 class="hero-names">Vaibhavi <span class="ampersand">&</span> Gautam</h1>
     <p class="hero-invite">Together with their families, invite you to celebrate their union</p>
+    <div class="hero-date">05 November 2026</div>
     <div class="hero-line"></div>
     
     <!-- Countdown Timer -->
@@ -682,6 +706,15 @@
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
           </select>
         </div>
 
